@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <t t-name="mail_filter.Chatter" t-inherit="mail.Chatter" t-inherit-mode="extension">
+        <xpath expr="//button[@t-on-click='popoutAttachment']" position="before">
+            <button class="btn btn-link text-action" t-on-click="() => this.setFilter('all')">
+                <i class="fa fa-comments" role="img"/>
+            </button>
+            <button class="btn btn-link text-action" t-on-click="() => this.setFilter('logs')">
+                <i class="fa fa-sticky-note" role="img"/>
+            </button>
+            <button class="btn btn-link text-action" t-on-click="() => this.setFilter('mails')">
+                <i class="fa fa-envelope" role="img"/>
+            </button>
+        </xpath>
+        <xpath expr="//button[hasclass('o-mail-Chatter-sendMessage')]" position="attributes">
+            <attribute name="t-if">state.showMessages !== 'logs'</attribute>
+        </xpath>
+        <xpath expr="//button[hasclass('o-mail-Chatter-logNote')]" position="attributes">
+            <attribute name="t-if">state.showMessages !== 'mails'</attribute>
+        </xpath>
+         <xpath expr="//button[hasclass('o-mail-Chatter-activity')]" position="attributes">
+            <attribute name="t-if" add="state.showMessages !== 'mails'" separator=" &amp;&amp; " />
+        </xpath>
+        <xpath expr="//Thread" position="attributes">
+            <attribute name="messageFilter">state.showMessages</attribute>
+        </xpath>
+        <xpath expr="//SearchMessageResult" position="attributes">
+            <attribute name="messageFilter">state.showMessages</attribute>
+        </xpath>
+    </t>
+</odoo>

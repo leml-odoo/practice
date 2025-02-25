@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <t t-name="mail_filter.SearchMessageResult" t-inherit="mail.SearchMessageResult" t-inherit-mode="extension">
+        <xpath expr="//MessageCardList" position="attributes">
+            <attribute name="messages">filteredMessages</attribute>
+        </xpath>
+    </t>
+</odoo>
